@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/sign_test.dir/src/sign_test.cpp.o -o sign_test  libsigner.a libkey_generator.a libhash.a /usr/lib/x86_64-linux-gnu/libcrypto.so 

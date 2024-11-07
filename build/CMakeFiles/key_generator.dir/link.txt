@@ -1,2 +1,0 @@
-/usr/bin/ar qc libkey_generator.a CMakeFiles/key_generator.dir/src/key_generator.cpp.o
-/usr/bin/ranlib libkey_generator.a

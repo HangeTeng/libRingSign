@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/key_agreement_test.dir/src/key_agreement_test.cpp.o -o key_agreement_test  libkey_generator.a libsigner.a libhash.a /usr/lib/x86_64-linux-gnu/libcrypto.so libkey_generator.a libhash.a /usr/lib/x86_64-linux-gnu/libcrypto.so 

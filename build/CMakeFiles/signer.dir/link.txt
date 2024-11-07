@@ -1,2 +1,0 @@
-/usr/bin/ar qc libsigner.a CMakeFiles/signer.dir/src/signer.cpp.o
-/usr/bin/ranlib libsigner.a

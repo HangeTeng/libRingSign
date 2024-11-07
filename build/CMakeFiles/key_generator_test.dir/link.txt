@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/key_generator_test.dir/src/key_generator_test.cpp.o -o key_generator_test  libkey_generator.a libhash.a /usr/lib/x86_64-linux-gnu/libcrypto.so 
