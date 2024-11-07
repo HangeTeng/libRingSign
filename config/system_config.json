@@ -1,0 +1,12 @@
+{
+    "curve_nid": 714,
+    "hash_keys": [
+        "hash_key_719113813",
+        "hash_key_284064176",
+        "hash_key_2050127790",
+        "hash_key_1172260140",
+        "hash_key_832345836"
+    ],
+    "hash_type": "SHA256",
+    "system_public_key": "040F484F732DFC4E4621AD43F47487EA767703AEE4C754BC69BA3178138FF4C6ECEE94AB15E0722F5248AD366C7FF5456371D7577A65DEFF1F63EDB72F0EC5454D"
+}
