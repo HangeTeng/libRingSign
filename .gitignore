@@ -1,0 +1,5 @@
+# 忽略 .vscode/settings.json 文件
+.vscode/settings.json
+
+# 忽略 build 文件夹及其中所有内容
+build/
