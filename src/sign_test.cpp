@@ -2,10 +2,13 @@
 #include <openssl/bn.h>
 #include <openssl/ec.h>
 #include <cassert>
+#include <vector>
+#include <chrono>
 #include "signer.h"
 #include "key_generator.h"
 
 using namespace ring_signature_lib;
+using namespace std::chrono;
 
 // 辅助函数：打印 EC_POINT 内容
 void print_ec_point(const std::string& label, const EC_GROUP* group, const EC_POINT* point) {
@@ -22,7 +25,9 @@ void print_bignum(const std::string& label, const BIGNUM* bn) {
 }
 
 // 测试 Sign 函数
-void sign_test() {
+void sign_test(int participant_count) {
+    auto start_time = high_resolution_clock::now(); // 开始计时
+
     // 初始化 KeyGenerator
     KeyGenerator keygen;
     std::cout << "Initializing KeyGenerator..." << std::endl;
@@ -38,8 +43,8 @@ void sign_test() {
 
     // 初始化多个签名者并生成密钥
     std::vector<Signer> signers;
-    std::vector<std::string> signer_ids = {"signer1", "signer2", "signer3"};
-    for (const auto& signer_id : signer_ids) {
+    for (int i = 0; i < participant_count; ++i) {
+        std::string signer_id = "signer" + std::to_string(i + 1);
         std::cout << "\nInitializing " << signer_id << "..." << std::endl;
 
         // 创建 Signer 实例并初始化
@@ -68,10 +73,10 @@ void sign_test() {
     }
 
     // 准备 other_signer_pkc 列表用于签名（排除 signer1 自身）
-    std::vector<std::pair<std::string, std::pair<EC_POINT*, EC_POINT*>>> other_signer_pkc = {
-        {"signer2", signers[1].GetPublicKey()},
-        {"signer3", signers[2].GetPublicKey()}
-    };
+    std::vector<std::pair<std::string, std::pair<EC_POINT*, EC_POINT*>>> other_signer_pkc;
+    for (int i = 1; i < participant_count; ++i) {
+        other_signer_pkc.emplace_back("signer" + std::to_string(i + 1), signers[i].GetPublicKey());
+    }
 
     std::cout << "Public keys of other signers:" << std::endl;
     for (const auto& [id, pub_key_pair] : other_signer_pkc) {
@@ -91,9 +96,24 @@ void sign_test() {
     print_bignum("phi", phi);
     print_bignum("psi", psi);
     print_ec_point("T", signers[0].GetGroup(), T);
+
+    auto end_time = high_resolution_clock::now(); // 结束计时
+    auto duration = duration_cast<milliseconds>(end_time - start_time);
+    std::cout << "Sign test completed in " << duration.count() << " ms" << std::endl;
 }
 
-int main() {
-    sign_test();
+int main(int argc, char* argv[]) {
+    int participant_count = 3; // 默认参与方数量为 3
+
+    // 解析命令行参数
+    if (argc > 1) {
+        participant_count = std::stoi(argv[1]);
+        if (participant_count < 2) {
+            std::cerr << "Participant count must be at least 2." << std::endl;
+            return 1;
+        }
+    }
+
+    sign_test(participant_count);
     return 0;
 }

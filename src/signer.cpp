@@ -463,8 +463,6 @@ std::tuple<std::vector<EC_POINT*>, BIGNUM*, BIGNUM*, EC_POINT*> Signer::sign(
     return {A, phi, psi, T};
 }
 
-
-
 bool Signer::verify(
     const std::vector<EC_POINT*>& A,
     BIGNUM* phi,
