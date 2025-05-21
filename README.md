@@ -35,7 +35,7 @@ LibringSig 是一个基于C++和OpenSSL的环签名库，主要用于实现环�
 
 ```bash
 sudo apt update
-sudo apt install libssl-dev
+sudo apt install libssl-dev nlohmann-json3-dev
 ```
 
 ## 安装

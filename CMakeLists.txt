@@ -33,3 +33,6 @@ target_link_libraries(key_agreement_test key_generator signer hash OpenSSL::Cryp
 # 创建 sign_test 测试可执行文件
 add_executable(sign_test src/sign_test.cpp)
 target_link_libraries(sign_test signer key_generator hash OpenSSL::Crypto)
+
+add_executable(sign_batch_test src/sign_batch_test.cpp)
+target_link_libraries(sign_batch_test signer key_generator hash OpenSSL::Crypto)
