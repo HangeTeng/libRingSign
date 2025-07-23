@@ -1,4 +1,4 @@
-#include "signer.h"
+#include "libringsign/signer.h"
 #include <openssl/rand.h>
 #include <stdexcept>
 #include <iostream>

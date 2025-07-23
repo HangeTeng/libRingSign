@@ -1,10 +1,12 @@
-#include "key_generator.h"
+#include "libringsign/key_generator.h"
+#include "libringsign/config_manager.h"
 #include <openssl/rand.h>
 #include <openssl/obj_mac.h>
 #include <stdexcept>
 #include <iostream>
-#include <fstream>
 #include <ctime>
+#include <fstream>
+
 
 using json = nlohmann::json;
 
@@ -24,7 +26,6 @@ void KeyGenerator::Initialize(unsigned int seed) {
     if (is_initialized_) {
         throw std::runtime_error("Already initialized");
     }
-
     initialize(seed);
     is_initialized_ = true;
 }
