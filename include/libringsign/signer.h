@@ -58,6 +58,16 @@ public:
         const std::string& msg, const std::string& event,
         std::vector<std::pair<std::string, std::pair<EC_POINT*, EC_POINT*>>> other_signer_pkc);
 
+    // 验证环签名的公开接口
+    bool Verify(
+        const std::vector<EC_POINT*>& A,
+        BIGNUM* phi,
+        BIGNUM* psi,
+        EC_POINT* T,
+        const std::string& msg,
+        const std::string& event,
+        std::vector<std::pair<std::string, std::pair<EC_POINT*, EC_POINT*>>> ring_pubkeys);
+
 
 
 

@@ -547,5 +547,17 @@ bool Signer::verify(
         return is_valid;
     }
 
+bool Signer::Verify(
+    const std::vector<EC_POINT*>& A,
+    BIGNUM* phi,
+    BIGNUM* psi,
+    EC_POINT* T,
+    const std::string& msg,
+    const std::string& event,
+    std::vector<std::pair<std::string, std::pair<EC_POINT*, EC_POINT*>>> ring_pubkeys) {
+    
+    // 调用私有的verify方法
+    return verify(A, phi, psi, T, msg, event, ring_pubkeys);
+}
 
 } // namespace ring_signature_lib
